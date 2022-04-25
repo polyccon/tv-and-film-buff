@@ -18,6 +18,5 @@ from django.urls import path
 from tv_and_film_buffAPI.views import home_page
 
 urlpatterns = [
-    path(r"^$", home_page, name="home"),
+    path("", home_page, name="home"),
 ]
-# from django.conf.urls import url
