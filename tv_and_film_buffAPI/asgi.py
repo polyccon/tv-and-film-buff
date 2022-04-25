@@ -11,6 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'tv_and_film_buff.settings')
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "tv_and_film_buffAPI.config.settings")
 
 application = get_asgi_application()

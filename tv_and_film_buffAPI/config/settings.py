@@ -49,7 +49,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "tv_and_film_buff.urls"
+ROOT_URLCONF = "tv_and_film_buffAPI.urls"
 
 TEMPLATES = [
     {
@@ -67,7 +67,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "tv_and_film_buff.wsgi.application"
+WSGI_APPLICATION = "tv_and_film_buffAPI.wsgi.application"
 
 
 # Database

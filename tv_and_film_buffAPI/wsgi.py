@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'tv_and_film_buff.settings')
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "tv_and_film_buffAPI.config.settings")
 
 application = get_wsgi_application()
