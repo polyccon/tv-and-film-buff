@@ -1,1 +1,1 @@
-# game-of-thrones
+# tv-episodes-api
