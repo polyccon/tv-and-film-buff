@@ -1,5 +1,6 @@
 from django.db import models
-from django.contrib.postgres.fields import ArrayField
+
+# from django.contrib.postgres.fields import ArrayField
 
 
 class Series(models.Model):
@@ -9,6 +10,9 @@ class Series(models.Model):
     title = models.CharField(max_length=255)
     total_seasons = models.IntegerField(default=1)
     seriesID = models.CharField(max_length=10, unique=True, primary_key=True)
+
+    def __str__(self):
+        return self.title
 
 
 class Episodes(models.Model):
@@ -33,3 +37,6 @@ class Episodes(models.Model):
         on_delete=models.CASCADE,
         related_name="episodes",
     )
+
+    def __str__(self):
+        return self.title

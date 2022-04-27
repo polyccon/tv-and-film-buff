@@ -15,8 +15,14 @@ Including another URLconf
 """
 
 from django.urls import path
-from tv_and_film_buffAPI.views import home_page
 
-urlpatterns = [
-    path("", home_page, name="home"),
-]
+from tv_and_film_buffAPI.views import EpisodesViewSet
+
+
+EPISODE_LIST = path(
+    "episodes/",
+    EpisodesViewSet.as_view({"get": "list"}),
+    name="episode-list",
+)
+
+urlpatterns = [EPISODE_LIST]
