@@ -17,29 +17,19 @@ SEASONS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "seasons/
 EPISDOES_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "episodes/")
 
 
-def get_content(url):
+def get_request(url):
     r = requests.get(url)
     return r.text
 
 
-def save_text(file_directory, file_name, text):
+def write_in_file(file_directory, file_name, text):
     with open(os.path.join(file_directory, file_name), "w") as f:
         f.write(text)
 
 
 def get_season_content(url, season):
-    content = get_content(url)
-    save_text(SEASONS_DIR, f"GameOfThrones_season_{season}.json", content)
-
-
-def get_episode_content(urls, season):
-    for index, url in enumerate(urls):
-        content = get_content(url)
-        save_text(
-            EPISDOES_DIR,
-            f"GameOfThrones_season_{season}_episode_{index+1}.json",
-            content,
-        )
+    content = get_request(url)
+    return write_in_file(SEASONS_DIR, f"GameOfThrones_season_{season}.json", content)
 
 
 def get_episode_imdbs(season):
@@ -47,16 +37,25 @@ def get_episode_imdbs(season):
     with open(
         os.path.join(SEASONS_DIR, f"GameOfThrones_season_{season}.json"), "r"
     ) as f:
-
         text = json.loads(f.read())
         for episode in text["Episodes"]:
             imdbIDs.append(episode["imdbID"])
         return imdbIDs
 
 
-def get_all_seasons():
+def get_episode_content(urls, season):
+    for index, url in enumerate(urls):
+        content = get_request(url)
+        write_in_file(
+            EPISDOES_DIR,
+            f"GameOfThrones_season_{season}_episode_{index+1}.json",
+            content,
+        )
+
+
+def get_all_seasons(total_seasons):
     LOGGER.info("Started fetching data for seasons")
-    for i in range(1, 9):
+    for i in range(1, total_seasons + 1):
         season = i
         season_url = f"http://www.omdbapi.com/?t=Game of Thrones&Season={season}&apikey={api_key}"
         get_season_content(season_url, season)
@@ -71,11 +70,12 @@ def get_all_episodes(season):
         f"http://www.omdbapi.com/?i={imdbID}&apikey={api_key}" for imdbID in imdbIDs
     ]
     get_episode_content(episode_urls, season)
-    LOGGER.info(f"Successfully retrieved data for season {season}")
+    LOGGER.info(f"Successfully retrieved data season {season} episodes")
 
 
 def main():
-    get_all_seasons()
+    # TODO: remove hardcoded number for total_seasons
+    get_all_seasons(9)
     for i in range(1, 9):
         get_all_episodes(i)
 
