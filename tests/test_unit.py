@@ -1,29 +1,26 @@
 import pytest
 from rest_framework.reverse import reverse
-from django.http import HttpRequest
-from django.urls import resolve
 
-from unittest.mock import (
-    MagicMock,
-    patch,
-)
 from rest_framework.test import (
     APIClient,
-    APIRequestFactory,
 )
 from tests.factories import SeriesFactory, EpisodesFactory
 from tv_and_film_buffAPI.urls import EPISODE_LIST, EPISODE_RETRIEVE
 
 
-@pytest.mark.django_db
-def test_list_endpoint_returns_episodes():
-    e = EpisodesFactory(
+@pytest.fixture
+def episode():
+    return EpisodesFactory(
         title="The Stake Out",
         episode_number=2,
         genre="Comedy",
         plot="Jerry and Elaine have just ended their relationship, but have chosen to remain friends",
         series=SeriesFactory(title="Seinfeld"),
     )
+
+
+@pytest.mark.django_db
+def test_list_endpoint_returns_episodes(episode):
     client = APIClient()
     url = reverse(
         viewname=EPISODE_LIST.name,
@@ -48,14 +45,7 @@ def test_list_endpoint_returns_episodes():
 
 
 @pytest.mark.django_db
-def test_get_endpoint_returns_episode():
-    e = EpisodesFactory(
-        title="The Stake Out",
-        episode_number=2,
-        genre="Comedy",
-        plot="Jerry and Elaine have just ended their relationship, but have chosen to remain friends",
-        series=SeriesFactory(title="Seinfeld"),
-    )
+def test_get_endpoint_returns_episode(episode):
     client = APIClient()
     url = reverse(viewname=EPISODE_RETRIEVE.name, kwargs={"imdbID": "tt1480055"})
     response = client.get(url, format="json")
