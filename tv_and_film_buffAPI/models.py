@@ -4,15 +4,16 @@ from django.contrib.postgres.fields import ArrayField
 
 class Series(models.Model):
     class Meta:
-        ordering = ("id",)
+        ordering = ("title",)
 
     title = models.CharField(max_length=255)
     total_seasons = models.IntegerField(default=1)
+    seriesID = models.CharField(max_length=10, unique=True, primary_key=True)
 
 
 class Episodes(models.Model):
     class Meta:
-        ordering = ("id",)
+        ordering = ("series",)
 
     genre_choices = tuple((v, v) for v in ["Action", "Adventure", "Drama"])
     language_choices = tuple((v, v) for v in ["English", "Greek", "Italian"])
@@ -21,11 +22,12 @@ class Episodes(models.Model):
     plot = models.CharField(max_length=255)
     episode_number = models.IntegerField(default=1)
     season_number = models.IntegerField(default=1)
-    genre = ArrayField(
-        models.CharField(choices=genre_choices, default="Action", max_length=22)
-    )
+    # TODO: change below to ArrayField with move to postgres
+    genre = models.CharField(choices=genre_choices, default="Action", max_length=22)
     language = models.CharField(max_length=30, choices=language_choices)
-    imdbRating = models.CharField(max_length=10)
+    imdbRating = models.FloatField()
+    poster = models.URLField(max_length=200)
+    imdbID = models.CharField(max_length=10, unique=True)
     series = models.ForeignKey(
         "Series",
         on_delete=models.CASCADE,
