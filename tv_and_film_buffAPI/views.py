@@ -27,8 +27,10 @@ class EpisodesViewSet(
     lookup_field = "imdbID"
     event = "RETRIEVE_EPISODE"
     filter_backends = (DjangoFilterBackend, SearchFilter)
-
     search_fields = ("imdbID",)
+
+    def get_object(self):
+        return self.queryset.get(imdbID=self.kwargs.get("imdbID"))
 
     def list(self, request, *args, **kwargs):
         """
@@ -36,3 +38,11 @@ class EpisodesViewSet(
         """
         self.event = "LIST_EPISODES"
         return super().list(request, *args, **kwargs)
+
+    def retrieve(self, request, *args, **kwargs):
+        """
+        Retrieve a specific episode.
+        """
+        self.event = "RETRIEVE_EPISODE"
+
+        return super().retrieve(request, *args, **kwargs)

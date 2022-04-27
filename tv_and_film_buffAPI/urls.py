@@ -15,7 +15,6 @@ Including another URLconf
 """
 
 from django.urls import path
-
 from tv_and_film_buffAPI.views import EpisodesViewSet
 
 
@@ -25,4 +24,10 @@ EPISODE_LIST = path(
     name="episode-list",
 )
 
-urlpatterns = [EPISODE_LIST]
+EPISODE_RETRIEVE = path(
+    "episodes/<imdbID>/",
+    EpisodesViewSet.as_view({"get": "retrieve"}),
+    name="episode-retrieve",
+)
+
+urlpatterns = [EPISODE_LIST, EPISODE_RETRIEVE]
