@@ -1,3 +1,8 @@
+# TODO: refactor hard coded urls out and make the series title a param
+# so that it works for other series
+# TODO: add error handling and manage unhappy paths
+# TODO: refactor this into a separate service with some async tasks
+# TODO: add functionality to populate the db from the jsons (but in separate service so as to reduce probability of issues)
 import json
 import logging
 import os
@@ -14,7 +19,7 @@ logging.basicConfig(level=logging.INFO, format=FORMAT)
 LOGGER = logging.getLogger(__name__)
 
 SEASONS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "seasons/")
-EPISDOES_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "episodes/")
+EPISODES_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "episodes/")
 
 
 def get_request(url):
@@ -47,7 +52,7 @@ def get_episode_content(urls, season):
     for index, url in enumerate(urls):
         content = get_request(url)
         write_in_file(
-            EPISDOES_DIR,
+            EPISODES_DIR,
             f"GameOfThrones_season_{season}_episode_{index+1}.json",
             content,
         )

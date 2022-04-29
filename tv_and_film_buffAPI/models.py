@@ -29,6 +29,7 @@ class Episodes(models.Model):
     # TODO: change below to ArrayField with move to postgres
     genre = models.CharField(choices=genre_choices, default="Action", max_length=22)
     language = models.CharField(max_length=30, choices=language_choices)
+    # TODO: change the imdbRating to a more flexible field type or allow empty values because sometimes it's missing
     imdbRating = models.FloatField()
     poster = models.URLField(max_length=200)
     imdbID = models.CharField(max_length=10, unique=True)
