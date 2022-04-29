@@ -29,9 +29,6 @@ class EpisodesViewSet(
     filter_backends = (DjangoFilterBackend, SearchFilter)
     search_fields = ("imdbID",)
 
-    def get_object(self):
-        return self.queryset.get(imdbID=self.kwargs.get("imdbID"))
-
     def list(self, request, *args, **kwargs):
         """
         Return the list of all episodes

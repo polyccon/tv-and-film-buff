@@ -107,6 +107,10 @@ and open
 
 `localhost:8000/episodes` in your browser
 
+then to view only one episode:
+
+`localhost:8000/episodes/tt1668746` where `tt1668746` is imdbID
+
 
 
 __TO RUN THE TESTS__
