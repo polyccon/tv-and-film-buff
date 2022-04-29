@@ -1,12 +1,5 @@
-import json
 import os
-from unittest.mock import (
-    MagicMock,
-    patch,
-)
-
 import pytest
-from django.contrib.auth.models import User
 from tv_and_film_buffAPI.models import Series, Episodes
 from tests.factories import SeriesFactory, EpisodesFactory
 
