@@ -37,10 +37,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "django_extensions",
     "django_filters",
     "rest_framework",
     "tv_and_film_buffAPI.apps.WebservicesConfig",
+    "django_extensions",
 ]
 
 MIDDLEWARE = [

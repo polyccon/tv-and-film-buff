@@ -126,7 +126,16 @@ or
 
 `pytest --cov-report term-missing --cov=tv_and_film_buffAPI tests`
 
-### Plans for the future:
+You will need to set `export DJANGO_SETTINGS_MODULE=tv_and_film_buffAPI.config.settings`
+directly pasting in your terminal, or adding it to .env and loading from there
+
+If you get an error: 
+```E   django.core.exceptions.ImproperlyConfigured. Requested setting ... but settings are not configured. You must either define the environment variable DJANGO_SETTINGS_MODULE or call settings.configure() before accessing settings.```
+
+it's because that variable isn't set properly in your terminal where you are running the tests
+
+
+### Some notes about plans for the future:
 
 As a user I would like to:
 - browse series options and add my favourite series to my account
