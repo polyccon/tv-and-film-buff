@@ -1,0 +1,14 @@
+language: python
+python:
+  - "3.9.1"
+before_install:
+  - pip install --user codecov
+install:
+  - pip install -r requirements.txt
+  - pip install codecov
+  - pip install pytest-cov
+  - pip install .
+script:
+  - pytest  --cov-report=xml --cov=tv_and_film_buffAPI tests/
+after_success:
+  - codecov --file coverage/lcov.info --disable search
