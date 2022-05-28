@@ -150,8 +150,8 @@ There are various TODOS left in the code for things I would like to change and I
 - refactor the ingest_data.py script into a service, and 
 - create appropriate asynchronous tasks (such as ones that would check whether 
 there is a new episode for the series the user has selected)
-- Move to postgres and add docker/docker-compose - this would enable deployment to ECS and/or
-think about re-architecting some bits into AWS technologies
+- Move to postgres
+- Deploy to ECS and re-architecting some bits into AWS technologies
 - A user interface could be fun to build for this app
 
 Ideas are very welcome!
