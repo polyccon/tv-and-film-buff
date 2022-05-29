@@ -53,5 +53,4 @@ RUN pip install -r requirements.txt
 ENV LOG_LEVEL=DEBUG
 ENV DJANGO_SETTINGS_MODULE=tv_and_film_buffAPI.config.settings
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:5500"]
 EXPOSE 5500

@@ -11,6 +11,20 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 import os
 from pathlib import Path
+from decouple import (
+    AutoConfig,
+    Config,
+    RepositoryEnv,
+)
+from tv_and_film_buffAPI.config.fallbacks import SettingsFallbacks
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+settings_location = os.getenv("SETTINGS_LOCATION")
+if settings_location is not None:
+    config = Config(RepositoryEnv(settings_location))
+else:
+    config = AutoConfig()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -77,11 +91,33 @@ WSGI_APPLICATION = "tv_and_film_buffAPI.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+DATABASE_ENGINE = config(
+    "DATABASE_ENGINE", default="django.db.backends.postgresql_psycopg2"
+)
+DATABASE_HOST = config("DATABASE_HOST", default="localhost")
+DATABASE_NAME = config("DATABASE_NAME", default=SettingsFallbacks.DATABASE_NAME.value)
+DATABASE_PASSWORD = config(
+    "DATABASE_PASSWORD", default=SettingsFallbacks.DATABASE_PASSWORD.value
+)
+DATABASE_USER = config("DATABASE_USER", default=SettingsFallbacks.DATABASE_USER.value)
+DATABASE_PORT = config("DATABASE_PORT", default=5432)
+DATABASE_SSL = config("DATABASE_SSL", default=False, cast=bool)
+
+DATABASE_OPTIONS = {}
+if DATABASE_SSL:
+    DATABASE_OPTIONS["sslmode"] = "require"
+
+
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+        "ENGINE": DATABASE_ENGINE,
+        "HOST": DATABASE_HOST,
+        "NAME": DATABASE_NAME,
+        "PASSWORD": DATABASE_PASSWORD,
+        "USER": DATABASE_USER,
+        "PORT": DATABASE_PORT,
+        "OPTIONS": DATABASE_OPTIONS,
+    },
 }
 
 

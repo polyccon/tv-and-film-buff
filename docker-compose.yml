@@ -15,15 +15,15 @@ services:
     env_file:
       - .env
   db:
-    image: postgres:9.6-alpine
+    image: postgres:11.16-alpine
     ports:
       - "5433:5432"
     volumes:
       - db-data:/var/lib/postgresql/data
     environment:
-      POSTGRES_DB: campaignerapi
-      POSTGRES_USER: campaignerapi
-      POSTGRES_PASSWORD: password
+      POSTGRES_DB: tv_and_film
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
 volumes:
   db-data:
     driver: local
