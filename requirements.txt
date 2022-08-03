@@ -10,7 +10,7 @@ commonmark==0.9.1
 coverage==6.3.2
 cryptography==36.0.2
 diagrams==0.21.1
-Django==4.0.4
+Django==4.1
 django-extensions==3.1.5
 django-filter==21.1
 django-rest-framework==0.1.0
