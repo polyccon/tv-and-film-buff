@@ -36,7 +36,7 @@ FROM base_python as base
 
 RUN \
     apt-get update && apt-get install -y --no-install-recommends \
-    libpq-dev libcurl4-openssl-dev &&\
+    libpq-dev libcurl4-openssl-dev openssl&&\
     true
 
 # Copy python packages
@@ -52,5 +52,6 @@ RUN pip install -r requirements.txt
 
 ENV LOG_LEVEL=DEBUG
 ENV DJANGO_SETTINGS_MODULE=tv_and_film_buffAPI.config.settings
+ENV PYTHONUNBUFFERED=1
 
 EXPOSE 5500

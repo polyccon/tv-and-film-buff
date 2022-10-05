@@ -4,6 +4,7 @@ services:
   backend:
     build:
       context: .
+    tty: true
     volumes:
       - .:/code/
     working_dir: /code
