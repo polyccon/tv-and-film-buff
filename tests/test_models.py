@@ -8,7 +8,7 @@ from tests.factories import SeriesFactory, EpisodesFactory
 def test_series_record_created_correctly():
     s = SeriesFactory(title="Seinfeld")
     assert s.total_seasons == 8
-    assert s.seriesID == "tt0944947"
+    assert s.series_id == "tt0944947"
 
 
 @pytest.mark.django_db

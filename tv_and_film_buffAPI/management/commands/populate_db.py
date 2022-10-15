@@ -24,17 +24,17 @@ def create_series_records():
             # TODO: total seasons to be a variable in order to make
             # script flexible to create records for any series
             total_seasons = 8
-            seriesID = text["seriesID"]
-            s = Series.objects.create(
-                title=title, total_seasons=total_seasons, seriesID=seriesID
+            series_id = text["seriesID"]
+            s = Series.objects.get_or_create(
+                title=title, total_seasons=total_seasons, series_id=series_id
             )
             return s
 
 
 def create_episode_records():
     LOGGER.info("Creating episodes records")
-    # TODO: make seriesID a variable
-    series = Series.objects.get(seriesID="tt0944947")
+    # TODO: make series_id a variable
+    series = Series.objects.get(series_id="tt0944947")
     for _file in os.listdir(EPISODES_DIR):
         with open(os.path.join(EPISODES_DIR, _file), "r") as f:
             text = json.loads(f.read())

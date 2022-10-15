@@ -14,7 +14,7 @@ class SeriesFactory(factory.django.DjangoModelFactory):
 
     title = "Game of Thrones"
     total_seasons = 8
-    seriesID = "tt0944947"
+    series_id = "tt0944947"
 
 
 class EpisodesFactory(factory.django.DjangoModelFactory):

@@ -1,8 +1,8 @@
 ### tv-and-film-buff
 
-__TO SETUP__
+**TO SETUP**
 
-If you have pyenv installed (instructions for how to install pyenv here: https://github.com/pyenv/pyenv#installation) 
+If you have pyenv installed (instructions for how to install pyenv here: https://github.com/pyenv/pyenv#installation)
 then you can use it to create a virtualenv:
 
 - First install 3.9.1 python version with pyenv:
@@ -27,11 +27,9 @@ You should see a virtualenv named `tv-and-film-buff-env` listed if you run the c
 
 `pip3 install -r requirements.txt`
 
-
 When you are done you can deactivate your virtualenv:
 
 `pyenv deactivate`
-
 
 ALTERNATIVELY If you don't have pyenv installed you can setup a virtualenv using virtualenv like so:
 
@@ -51,10 +49,7 @@ When you are done you can deactivate your virtualenv:
 
 `deactivate`
 
-
-
-__TO RUN THE APP__
-
+**TO RUN THE APP**
 
 After you have successfully finished setting up you will need to create a .env file and add the token like so:
 
@@ -68,10 +63,10 @@ and then to add data in the database login to the shell:
 
 `python3 manage.py shell_plus` - This creates a shell with models already imported as opposed to `python3 manage.py shell`
 
-and  then
+and then
 
 ```
-s = Series.objects.create(title="Game of Thrones", total_seasons=8, seriesID="tt0944947")
+s = Series.objects.create(title="Game of Thrones", total_seasons=8, series_id="tt0944947")
 Episodes.objects.create(
     title="Winter Is Coming",
     plot="Eddard Stark is torn between his family and an old friend when asked to serve at the side of King Robert Baratheon; Viserys plans to wed his sister to a nomadic warlord in exchange for an army.",
@@ -97,13 +92,14 @@ Episodes.objects.create(
     series=s
 )
 ```
+
 or ` python3 manage.py dbshell` if you prefer running raw SQL commands
 
 Then to run the app:
 
 `python3 manage.py runserver`
 
-and open 
+and open
 
 `localhost:8000/episodes` in your browser
 
@@ -111,16 +107,14 @@ then to view only one episode:
 
 `localhost:8000/episodes/tt1668746` where `tt1668746` is imdbID
 
-
-
-__TO RUN THE TESTS__
+**TO RUN THE TESTS**
 
 And then to run the tests with a coverage report running the following command:
 `pytest tests`
- 
- or for including coverage report
 
-`pytest --cov=tv_and_film_buffAPI tests/` 
+or for including coverage report
+
+`pytest --cov=tv_and_film_buffAPI tests/`
 
 or
 
@@ -129,15 +123,15 @@ or
 You will need to set `export DJANGO_SETTINGS_MODULE=tv_and_film_buffAPI.config.settings`
 directly pasting in your terminal, or adding it to .env and loading from there
 
-If you get an error: 
-```E   django.core.exceptions.ImproperlyConfigured. Requested setting ... but settings are not configured. You must either define the environment variable DJANGO_SETTINGS_MODULE or call settings.configure() before accessing settings.```
+If you get an error:
+`E django.core.exceptions.ImproperlyConfigured. Requested setting ... but settings are not configured. You must either define the environment variable DJANGO_SETTINGS_MODULE or call settings.configure() before accessing settings.`
 
 it's because that variable isn't set properly in your terminal where you are running the tests
-
 
 ### Some notes about plans for the future:
 
 As a user I would like to:
+
 - browse series options and add my favourite series to my account
 - browse film options and add my favourite films to my account
 - get a notification for when an episode has been added to one of my series
@@ -146,10 +140,11 @@ As a user I would like to:
 - add comments on each episode
 - e.t.c
 
-There are various TODOS left in the code for things I would like to change and I have left notes, such as 
-- refactor the ingest_data.py script into a service, and 
-- create appropriate asynchronous tasks (such as ones that would check whether 
-there is a new episode for the series the user has selected)
+There are various TODOS left in the code for things I would like to change and I have left notes, such as
+
+- refactor the ingest_data.py script into a service, and
+- create appropriate asynchronous tasks (such as ones that would check whether
+  there is a new episode for the series the user has selected)
 - Move to postgres
 - Deploy to ECS and re-architecting some bits into AWS technologies
 - A user interface could be fun to build for this app
