@@ -16,14 +16,14 @@ EPISODES_DIR = os.path.join(
 
 
 def create_series_records():
-    print(os.listdir(EPISODES_DIR))
+    LOGGER.info("Creating series records")
     for _file in os.listdir(EPISODES_DIR):
         with open(os.path.join(EPISODES_DIR, _file), "r") as f:
-            print("f", f)
             text = json.loads(f.read())
             title = text["Title"]
+            # TODO: total seasons to be a variable in order to make
+            # script flexible to create records for any series
             total_seasons = 8
-            # total_seasons = int(text["totalSeasons"])
             seriesID = text["seriesID"]
             s = Series.objects.create(
                 title=title, total_seasons=total_seasons, seriesID=seriesID
@@ -32,14 +32,13 @@ def create_series_records():
 
 
 def create_episode_records():
+    LOGGER.info("Creating episodes records")
+    # TODO: make seriesID a variable
     series = Series.objects.get(seriesID="tt0944947")
     for _file in os.listdir(EPISODES_DIR):
         with open(os.path.join(EPISODES_DIR, _file), "r") as f:
             text = json.loads(f.read())
             title = text["Title"]
-            # total_seasons = 8
-            # seriesID = text["seriesID"]
-
             plot = text["Plot"]
             episode_number = text["Episode"]
             season_number = text["Season"]
@@ -54,8 +53,6 @@ def create_episode_records():
                     imdb_id=imdb_id, series=series
                 )
                 episode.title = title
-                # total_seasons=total_seasons,
-                # seriesID=seriesID,
                 episode.plot = plot
                 episode.episode_number = episode_number
                 episode.season_number = season_number
