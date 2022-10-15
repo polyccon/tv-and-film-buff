@@ -25,7 +25,7 @@ EPISODE_LIST = path(
 )
 
 EPISODE_RETRIEVE = path(
-    "episodes/<imdbID>/",
+    "episodes/<imdb_id>/",
     EpisodesViewSet.as_view({"get": "retrieve"}),
     name="episode-retrieve",
 )

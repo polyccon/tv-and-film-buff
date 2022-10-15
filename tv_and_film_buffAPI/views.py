@@ -23,11 +23,11 @@ class EpisodesViewSet(
     pagination_class = PaginationWithQueryParam
     queryset = Episodes.objects.all()
     serializer_class = EpisodesSerializerList
-    lookup_url_kwarg = "imdbID"
-    lookup_field = "imdbID"
+    lookup_url_kwarg = "imdb_id"
+    lookup_field = "imdb_id"
     event = "RETRIEVE_EPISODE"
     filter_backends = (DjangoFilterBackend, SearchFilter)
-    search_fields = ("imdbID",)
+    search_fields = ("imdb_id",)
 
     def list(self, request, *args, **kwargs):
         """

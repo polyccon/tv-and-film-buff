@@ -7,14 +7,14 @@ class EpisodesSerializerList(serializers.ModelSerializer):
     class Meta:
         model = Episodes
         fields = (
-            "imdbID",
+            "imdb_id",
             "title",
             "plot",
             "season_number",
             "episode_number",
             "genre",
             "language",
-            "imdbRating",
+            "imdb_rating",
             "poster",
             "series",
         )
