@@ -31,14 +31,14 @@ def test_list_endpoint_returns_episodes(episode):
     assert response.status_code == 200
     assert response.json() == [
         {
-            "imdbID": "tt1480055",
+            "imdb_id": "tt1480055",
             "title": "The Stake Out",
             "plot": "Jerry and Elaine have just ended their relationship, but have chosen to remain friends",
             "season_number": 1,
             "episode_number": 2,
             "genre": "Comedy",
             "language": "English",
-            "imdbRating": 9.0,
+            "imdb_rating": 9.0,
             "poster": "https://m.media-amazon.com/images/M/MV5BOTYwZDNlMDMtZWRkNC00NzNkLTk2ZDMtNGQ1MmEwNzAwZGZhXkEyXkFqcGdeQXVyMjg2MTMyNTM@._V1_SX300.jpg",
             "series": "tt0944947",
         }
@@ -48,19 +48,19 @@ def test_list_endpoint_returns_episodes(episode):
 @pytest.mark.django_db
 def test_get_endpoint_returns_episode(episode):
     client = APIClient()
-    url = reverse(viewname=EPISODE_RETRIEVE.name, kwargs={"imdbID": "tt1480055"})
+    url = reverse(viewname=EPISODE_RETRIEVE.name, kwargs={"imdb_id": "tt1480055"})
     response = client.get(url, format="json")
 
     assert response.status_code == 200
     assert response.json() == {
-        "imdbID": "tt1480055",
+        "imdb_id": "tt1480055",
         "title": "The Stake Out",
         "plot": "Jerry and Elaine have just ended their relationship, but have chosen to remain friends",
         "season_number": 1,
         "episode_number": 2,
         "genre": "Comedy",
         "language": "English",
-        "imdbRating": 9.0,
+        "imdb_rating": 9.0,
         "poster": "https://m.media-amazon.com/images/M/MV5BOTYwZDNlMDMtZWRkNC00NzNkLTk2ZDMtNGQ1MmEwNzAwZGZhXkEyXkFqcGdeQXVyMjg2MTMyNTM@._V1_SX300.jpg",
         "series": "tt0944947",
     }
@@ -69,7 +69,7 @@ def test_get_endpoint_returns_episode(episode):
 @pytest.mark.django_db
 def test_get_endpoint_returns_404_for_non_existent_id(episode):
     client = APIClient()
-    url = reverse(viewname=EPISODE_RETRIEVE.name, kwargs={"imdbID": "tt1480052"})
+    url = reverse(viewname=EPISODE_RETRIEVE.name, kwargs={"imdb_id": "tt1480052"})
     response = client.get(url, format="json")
 
     assert response.status_code == 404

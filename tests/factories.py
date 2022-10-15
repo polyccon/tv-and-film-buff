@@ -27,7 +27,7 @@ class EpisodesFactory(factory.django.DjangoModelFactory):
     season_number = 1
     genre = "Action, Adventure, Drama"
     language = "English"
-    imdbRating = 9.0
-    imdbID = "tt1480055"
+    imdb_rating = 9.0
+    imdb_id = "tt1480055"
     poster = "https://m.media-amazon.com/images/M/MV5BOTYwZDNlMDMtZWRkNC00NzNkLTk2ZDMtNGQ1MmEwNzAwZGZhXkEyXkFqcGdeQXVyMjg2MTMyNTM@._V1_SX300.jpg"
     series = factory.SubFactory(SeriesFactory)

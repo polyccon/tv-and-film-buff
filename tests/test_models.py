@@ -23,5 +23,5 @@ def test_episodes_record_created_correctly():
     )
     assert e.season_number == 1
     assert e.language == "English"
-    assert e.imdbRating == 9.0
+    assert e.imdb_rating == 9.0
     assert e.series.title == "Seinfeld"
