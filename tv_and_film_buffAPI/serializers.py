@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from tv_and_film_buffAPI.models import Series, Episodes
+from tv_and_film_buffAPI.models import Series, Episodes, Comments
 
 
 class EpisodesSerializerList(serializers.ModelSerializer):
@@ -17,4 +17,15 @@ class EpisodesSerializerList(serializers.ModelSerializer):
             "imdb_rating",
             "poster",
             "series",
+        )
+
+
+class CommentsSerializerList(serializers.ModelSerializer):
+    class Meta:
+        model = Comments
+        fields = (
+            "body",
+            "episode",
+            "created_at",
+            "updated_at",
         )

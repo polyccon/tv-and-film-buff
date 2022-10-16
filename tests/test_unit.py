@@ -1,12 +1,18 @@
 import django
+from django.utils import timezone
 import pytest
 from rest_framework.reverse import reverse
 
 from rest_framework.test import (
     APIClient,
 )
-from tests.factories import SeriesFactory, EpisodesFactory
-from tv_and_film_buffAPI.urls import EPISODE_LIST, EPISODE_RETRIEVE
+from tests.factories import (
+    CommentsFactory,
+    SeriesFactory,
+    EpisodesFactory,
+    CommentsFactory,
+)
+from tv_and_film_buffAPI.urls import EPISODES_LIST, EPISODE_RETRIEVE, COMMENTS_LIST
 
 
 @pytest.fixture
@@ -20,11 +26,16 @@ def episode():
     )
 
 
+@pytest.fixture
+def comment(episode):
+    return CommentsFactory(episode=episode)
+
+
 @pytest.mark.django_db
 def test_list_endpoint_returns_episodes(episode):
     client = APIClient()
     url = reverse(
-        viewname=EPISODE_LIST.name,
+        viewname=EPISODES_LIST.name,
     )
     response = client.get(url, format="json")
 
@@ -73,3 +84,19 @@ def test_get_endpoint_returns_404_for_non_existent_id(episode):
     response = client.get(url, format="json")
 
     assert response.status_code == 404
+
+
+@pytest.mark.django_db
+def test_list_endpoint_returns_comments(comment):
+    client = APIClient()
+    url = reverse(viewname=COMMENTS_LIST.name, kwargs={"imdb_id": "tt1480055"})
+    response = client.get(url, format="json")
+    assert response.status_code == 200
+    assert response.json() == [
+        {
+            "body": "This is a comment for an episode",
+            "episode": 6,
+            "created_at": timezone.now(),
+            "updated_at": timezone.now(),
+        }
+    ]

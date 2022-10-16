@@ -6,8 +6,11 @@ from rest_framework import (
 
 from rest_framework.filters import SearchFilter
 from rest_framework.pagination import PageNumberPagination
-from tv_and_film_buffAPI.models import Series, Episodes
-from tv_and_film_buffAPI.serializers import EpisodesSerializerList
+from tv_and_film_buffAPI.models import Series, Episodes, Comments
+from tv_and_film_buffAPI.serializers import (
+    EpisodesSerializerList,
+    CommentsSerializerList,
+)
 
 
 class PaginationWithQueryParam(PageNumberPagination):
@@ -43,3 +46,18 @@ class EpisodesViewSet(
         self.event = "RETRIEVE_EPISODE"
 
         return super().retrieve(request, *args, **kwargs)
+
+
+class CommentsViewSet(
+    mixins.ListModelMixin,
+    viewsets.GenericViewSet,
+):
+    queryset = Comments.objects.all()
+    serializer_class = CommentsSerializerList
+
+    def list(self, request, *args, **kwargs):
+        """
+        Return the list of all episodes
+        """
+        self.event = "LIST_COMMENTS"
+        return super().list(request, *args, **kwargs)
