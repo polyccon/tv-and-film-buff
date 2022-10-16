@@ -1,7 +1,6 @@
 import os
 import pytest
-from tv_and_film_buffAPI.models import Series, Episodes
-from tests.factories import SeriesFactory, EpisodesFactory
+from tests.factories import SeriesFactory, EpisodesFactory, CommentsFactory
 
 
 @pytest.mark.django_db
@@ -25,3 +24,10 @@ def test_episodes_record_created_correctly():
     assert e.language == "English"
     assert e.imdb_rating == 9.0
     assert e.series.title == "Seinfeld"
+
+
+@pytest.mark.django_db
+def test_comments_record_created_correctly():
+    comment = CommentsFactory()
+    assert comment.body == "This is a comment for an episode"
+    assert comment.episode.title == "Winter Is Coming"

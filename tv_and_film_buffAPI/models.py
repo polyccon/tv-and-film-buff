@@ -40,3 +40,12 @@ class Episodes(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Comments(models.Model):
+    body = models.TextField()
+    episode = models.ForeignKey(
+        "Episodes", on_delete=models.CASCADE, related_name="comments"
+    )
+    created_at = models.DateTimeField(auto_now_add=True, editable=False)
+    updated_at = models.DateTimeField(auto_now=True, editable=False, null=True)

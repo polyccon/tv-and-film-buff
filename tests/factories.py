@@ -1,11 +1,8 @@
 import datetime as dt
-import json
-import os
 
 import factory
 from django.utils import timezone
-from factory.fuzzy import FuzzyInteger
-from tv_and_film_buffAPI.models import Series, Episodes
+from tv_and_film_buffAPI.models import Series, Episodes, Comments
 
 
 class SeriesFactory(factory.django.DjangoModelFactory):
@@ -31,3 +28,12 @@ class EpisodesFactory(factory.django.DjangoModelFactory):
     imdb_id = "tt1480055"
     poster = "https://m.media-amazon.com/images/M/MV5BOTYwZDNlMDMtZWRkNC00NzNkLTk2ZDMtNGQ1MmEwNzAwZGZhXkEyXkFqcGdeQXVyMjg2MTMyNTM@._V1_SX300.jpg"
     series = factory.SubFactory(SeriesFactory)
+
+
+class CommentsFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = Comments
+
+    body = "This is a comment for an episode"
+    episode = factory.SubFactory(EpisodesFactory)
+    created_at = factory.LazyFunction(timezone.now)
