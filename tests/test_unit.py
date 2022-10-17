@@ -93,10 +93,5 @@ def test_list_endpoint_returns_comments(comment):
     response = client.get(url, format="json")
     assert response.status_code == 200
     assert response.json() == [
-        {
-            "body": "This is a comment for an episode",
-            "episode": 6,
-            "created_at": timezone.now(),
-            "updated_at": timezone.now(),
-        }
+        {"body": "This is a comment for an episode", "episode": 6}
     ]

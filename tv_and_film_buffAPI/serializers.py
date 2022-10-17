@@ -26,6 +26,4 @@ class CommentsSerializerList(serializers.ModelSerializer):
         fields = (
             "body",
             "episode",
-            "created_at",
-            "updated_at",
         )
