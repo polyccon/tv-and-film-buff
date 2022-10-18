@@ -21,8 +21,8 @@ FORMAT = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 logging.basicConfig(level=logging.INFO, format=FORMAT)
 LOGGER = logging.getLogger(__name__)
 
-SEASONS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "seasons/")
-EPISODES_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "episodes/")
+SEASONS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../../data/seasons")
+EPISODES_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../../data/episodes")
 
 
 def get_request(url):
@@ -88,9 +88,11 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         for path in [SEASONS_DIR, EPISODES_DIR]:
-            if not os. path. exists(path):
-                os.mkdir(SEASONS_DIR)
-                os.mkdir(EPISODES_DIR)
+            try:
+                os.path.exists(os.stat(str(path)))
+            except FileNotFoundError:
+                LOGGER.error(f"File not found error for path: {path}")
+                os.mkdir(path)
         # TODO: remove hardcoded number for total_seasons
         get_all_seasons(9)
         for i in range(1, 9):
