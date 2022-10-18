@@ -39,7 +39,7 @@ class Episodes(models.Model):
     )
 
     def __str__(self):
-        return self.title
+        return self.imdb_id
 
 
 class Comments(models.Model):

@@ -51,6 +51,7 @@ class EpisodesViewSet(
 class CommentsViewSet(
     mixins.ListModelMixin,
     viewsets.GenericViewSet,
+    mixins.CreateModelMixin,
 ):
     queryset = Comments.objects.all()
     serializer_class = CommentsSerializerList
@@ -61,3 +62,10 @@ class CommentsViewSet(
         """
         self.event = "LIST_COMMENTS"
         return super().list(request, *args, **kwargs)
+
+    def create(self, request, *args, **kwargs):
+        """
+        Return the list of all episodes
+        """
+        self.event = "CREATE_COMMENTS"
+        return super().create(request, *args, **kwargs)

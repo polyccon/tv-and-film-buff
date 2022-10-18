@@ -17,6 +17,7 @@ class EpisodesSerializerList(serializers.ModelSerializer):
             "imdb_rating",
             "poster",
             "series",
+            "comments",
         )
 
 

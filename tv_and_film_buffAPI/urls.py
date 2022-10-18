@@ -32,7 +32,7 @@ EPISODE_RETRIEVE = path(
 
 COMMENTS_LIST = path(
     "episodes/<imdb_id>/comments",
-    CommentsViewSet.as_view({"get": "list"}),
+    CommentsViewSet.as_view({"get": "list", "post": "create"}),
     name="comments-retrieve",
 )
 
