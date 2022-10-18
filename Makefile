@@ -74,3 +74,6 @@ psql: ## Enter the database backing service cli
 
 populate_db:
 	${RUN_COMPOSE} python manage.py populate_db
+
+ingest_data:
+	${RUN_COMPOSE} python manage.py ingest_data
