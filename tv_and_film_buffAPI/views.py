@@ -54,6 +54,7 @@ class CommentsViewSet(
     mixins.CreateModelMixin,
     mixins.UpdateModelMixin,
     mixins.RetrieveModelMixin,
+    mixins.DestroyModelMixin,
 ):
     queryset = Comments.objects.all()
     serializer_class = CommentsSerializerList
@@ -77,5 +78,12 @@ class CommentsViewSet(
         """
         Update a comment for an episode
         """
-        self.event = "UPDATE_COMMENTS"
+        self.event = "UPDATE_COMMENT"
         return super().update(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        """
+        Delete a comment for an episode
+        """
+        self.event = "DELETE_COMMENT"
+        return super().destroy(request, *args, **kwargs)

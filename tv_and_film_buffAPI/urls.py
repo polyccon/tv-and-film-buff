@@ -38,7 +38,7 @@ COMMENTS_LIST_CREATE = path(
 
 COMMENTS_RETRIEVE_UPDATE = path(
     "episodes/<imdb_id>/comments/<id>",
-    CommentsViewSet.as_view({"get": "retrieve", "put":"update"}),
+    CommentsViewSet.as_view({"get": "retrieve", "put":"update", "delete": "delete"}),
     name="comments-update",
 )
 
