@@ -52,20 +52,30 @@ class CommentsViewSet(
     mixins.ListModelMixin,
     viewsets.GenericViewSet,
     mixins.CreateModelMixin,
+    mixins.UpdateModelMixin,
+    mixins.RetrieveModelMixin,
 ):
     queryset = Comments.objects.all()
     serializer_class = CommentsSerializerList
+    lookup_field = "id"
 
     def list(self, request, *args, **kwargs):
         """
-        Return the list of all episodes
+        Return the list of all comments
         """
         self.event = "LIST_COMMENTS"
         return super().list(request, *args, **kwargs)
 
     def create(self, request, *args, **kwargs):
         """
-        Return the list of all episodes
+        Create a comment for an episode
         """
         self.event = "CREATE_COMMENTS"
         return super().create(request, *args, **kwargs)
+
+    def update(self, request, *args, **kwargs):
+        """
+        Update a comment for an episode
+        """
+        self.event = "UPDATE_COMMENTS"
+        return super().update(request, *args, **kwargs)

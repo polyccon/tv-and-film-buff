@@ -30,10 +30,16 @@ EPISODE_RETRIEVE = path(
     name="episode-retrieve",
 )
 
-COMMENTS_LIST = path(
+COMMENTS_LIST_CREATE = path(
     "episodes/<imdb_id>/comments",
     CommentsViewSet.as_view({"get": "list", "post": "create"}),
-    name="comments-retrieve",
+    name="comments-list-create",
 )
 
-urlpatterns = [EPISODES_LIST, EPISODE_RETRIEVE, COMMENTS_LIST]
+COMMENTS_RETRIEVE_UPDATE = path(
+    "episodes/<imdb_id>/comments/<id>",
+    CommentsViewSet.as_view({"get": "retrieve", "put":"update"}),
+    name="comments-update",
+)
+
+urlpatterns = [EPISODES_LIST, EPISODE_RETRIEVE, COMMENTS_LIST_CREATE, COMMENTS_RETRIEVE_UPDATE]
