@@ -6,6 +6,7 @@ from rest_framework import (
 
 from rest_framework.filters import SearchFilter
 from rest_framework.pagination import PageNumberPagination
+from tv_and_film_buffAPI.filters import EpisodesListFilter
 from tv_and_film_buffAPI.models import Series, Episodes, Comments
 from tv_and_film_buffAPI.serializers import (
     EpisodesSerializerList,
@@ -37,6 +38,7 @@ class EpisodesViewSet(
         Return the list of all episodes
         """
         self.event = "LIST_EPISODES"
+        self.filterset_class = EpisodesListFilter
         return super().list(request, *args, **kwargs)
 
     def retrieve(self, request, *args, **kwargs):
