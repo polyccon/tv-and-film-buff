@@ -12,7 +12,7 @@ from tests.factories import (
     EpisodesFactory,
     CommentsFactory,
 )
-from tv_and_film_buffAPI.urls import EPISODES_LIST, EPISODE_RETRIEVE, COMMENTS_LIST
+from tv_and_film_buffAPI.urls import EPISODES_LIST, EPISODE_RETRIEVE, COMMENTS_LIST_CREATE
 
 
 @pytest.fixture
@@ -32,7 +32,7 @@ def comment(episode):
 
 
 @pytest.mark.django_db
-def test_list_endpoint_returns_episodes(episode):
+def test_episodes_list_endpoint_returns_episodes(episode):
     client = APIClient()
     url = reverse(
         viewname=EPISODES_LIST.name,
@@ -42,6 +42,7 @@ def test_list_endpoint_returns_episodes(episode):
     assert response.status_code == 200
     assert response.json() == [
         {
+            "comments": [],
             "imdb_id": "tt1480055",
             "title": "The Stake Out",
             "plot": "Jerry and Elaine have just ended their relationship, but have chosen to remain friends",
@@ -57,13 +58,14 @@ def test_list_endpoint_returns_episodes(episode):
 
 
 @pytest.mark.django_db
-def test_get_endpoint_returns_episode(episode):
+def test_episodes_get_endpoint_returns_episode(episode):
     client = APIClient()
     url = reverse(viewname=EPISODE_RETRIEVE.name, kwargs={"imdb_id": "tt1480055"})
     response = client.get(url, format="json")
 
     assert response.status_code == 200
     assert response.json() == {
+        "comments": [],
         "imdb_id": "tt1480055",
         "title": "The Stake Out",
         "plot": "Jerry and Elaine have just ended their relationship, but have chosen to remain friends",
@@ -78,7 +80,7 @@ def test_get_endpoint_returns_episode(episode):
 
 
 @pytest.mark.django_db
-def test_get_endpoint_returns_404_for_non_existent_id(episode):
+def test_episodes_get_endpoint_returns_404_for_non_existent_id(episode):
     client = APIClient()
     url = reverse(viewname=EPISODE_RETRIEVE.name, kwargs={"imdb_id": "tt1480052"})
     response = client.get(url, format="json")
@@ -87,9 +89,9 @@ def test_get_endpoint_returns_404_for_non_existent_id(episode):
 
 
 @pytest.mark.django_db
-def test_list_endpoint_returns_comments(comment):
+def test_comments_list_endpoint_returns_comments(comment):
     client = APIClient()
-    url = reverse(viewname=COMMENTS_LIST.name, kwargs={"imdb_id": "tt1480055"})
+    url = reverse(viewname=COMMENTS_LIST_CREATE.name, kwargs={"imdb_id": "tt1480055"})
     response = client.get(url, format="json")
     assert response.status_code == 200
     assert response.json() == [
