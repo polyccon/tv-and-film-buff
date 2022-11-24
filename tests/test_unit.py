@@ -12,6 +12,7 @@ from tests.factories import (
     EpisodesFactory,
     CommentsFactory,
 )
+from tv_and_film_buffAPI.models import Comments
 from tv_and_film_buffAPI.urls import EPISODES_LIST, EPISODE_RETRIEVE, COMMENTS_LIST_CREATE
 
 
@@ -95,5 +96,21 @@ def test_comments_list_endpoint_returns_comments(comment):
     response = client.get(url, format="json")
     assert response.status_code == 200
     assert response.json() == [
-        {"body": "This is a comment for an episode", "episode": 6}
+        {"body": "This is a comment for an episode", "episode": comment.episode.pk}
     ]
+
+
+@pytest.mark.django_db
+def test_comments_create_endpoint_adds_and_returns_comment(episode, comment):
+    comments = Comments.objects.filter(episode=episode)
+    assert comments.count() == 1
+    client = APIClient()
+    url = reverse(viewname=COMMENTS_LIST_CREATE.name, kwargs={"imdb_id": "tt1480055"})
+    response = client.post(
+        url,
+        {"body": "this is a test comment", "episode": episode.pk},
+        format="json"
+    )
+    assert response.status_code == 201
+    assert response.json() == {"body": "this is a test comment", "episode": episode.pk}
+    assert comments.count() == 2
