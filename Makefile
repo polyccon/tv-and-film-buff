@@ -42,6 +42,9 @@ status: ## Shows status of all containers
 test: ## Updates requirements, rules and runs all available tests locally.
 	${RUN_COMPOSE} pytest ${USE_MULTIPLE_CORES} . ${TEST_PARAMS} -vv
 
+test_coverage: ## Updates requirements, rules and runs all available tests locally with coverage information.
+	${RUN_COMPOSE} pytest ${USE_MULTIPLE_CORES} --cov-report term-missing --cov=tv_and_film_buffAPI . ${TEST_PARAMS} -vv
+
 format:
 	${SIMPLE_RUN_TEST} black . --check
 
