@@ -133,4 +133,6 @@ def test_comments_delet_endpoint_deletes_comment(episode, comment):
     response = client.delete(url,format="json")
     
     assert response.status_code == 204
+    # TODO: should the delete endpoint return an empty list instead
+    # assert response.json() == []
     assert comments.count() == 0
