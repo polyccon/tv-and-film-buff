@@ -41,20 +41,22 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
+CORS_ORIGIN_ALLOW_ALL = True
 
 # Application definition
 
 INSTALLED_APPS = [
+    "tv_and_film_buffAPI.apps.WebservicesConfig",
+    "corsheaders",
+    "django_filters",
+    "django_extensions",
+    "rest_framework",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "django_filters",
-    "rest_framework",
-    "tv_and_film_buffAPI.apps.WebservicesConfig",
-    "django_extensions",
 ]
 
 MIDDLEWARE = [
