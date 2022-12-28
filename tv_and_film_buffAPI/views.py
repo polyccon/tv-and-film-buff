@@ -9,14 +9,34 @@ from rest_framework.pagination import PageNumberPagination
 from tv_and_film_buffAPI.filters import EpisodesListFilter
 from tv_and_film_buffAPI.models import Series, Episodes, Comments
 from tv_and_film_buffAPI.serializers import (
-    EpisodesSerializerList,
     CommentsSerializerList,
+    EpisodesSerializerList,
+    SeriesSerializerList,
 )
 
 
 class PaginationWithQueryParam(PageNumberPagination):
     page_size_query_param = "page_size"
     max_page_size = 100
+
+
+class SeriesViewSet(
+    mixins.ListModelMixin,
+    viewsets.GenericViewSet,
+):
+    pagination_class = PaginationWithQueryParam
+    queryset = Series.objects.all()
+    serializer_class = SeriesSerializerList
+    event = "RETRIEVE_SERIES"
+    filter_backends = (DjangoFilterBackend, SearchFilter)
+    search_fields = ("series_id",)
+
+    def list(self, request, *args, **kwargs):
+        """
+        Return the list of all series
+        """
+        self.event = "LIST_SERIES"
+        return super().list(request, *args, **kwargs)
 
 
 class EpisodesViewSet(

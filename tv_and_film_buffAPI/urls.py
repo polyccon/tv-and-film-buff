@@ -15,7 +15,7 @@ Including another URLconf
 """
 
 from django.urls import path
-from tv_and_film_buffAPI.views import EpisodesViewSet, CommentsViewSet
+from tv_and_film_buffAPI.views import EpisodesViewSet, CommentsViewSet, SeriesViewSet
 
 
 EPISODES_LIST = path(
@@ -42,4 +42,10 @@ COMMENTS_RETRIEVE_UPDATE = path(
     name="comments-update",
 )
 
-urlpatterns = [EPISODES_LIST, EPISODE_RETRIEVE, COMMENTS_LIST_CREATE, COMMENTS_RETRIEVE_UPDATE]
+SERIES_LIST = path(
+    "series/",
+    SeriesViewSet.as_view({"get": "list"}),
+    name="series-list",
+)
+
+urlpatterns = [EPISODES_LIST, EPISODE_RETRIEVE, COMMENTS_LIST_CREATE, COMMENTS_RETRIEVE_UPDATE, SERIES_LIST]

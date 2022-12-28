@@ -28,3 +28,9 @@ class CommentsSerializerList(serializers.ModelSerializer):
             "body",
             "episode",
         )
+
+
+class SeriesSerializerList(serializers.ModelSerializer):
+    class Meta:
+        model = Series
+        fields = "__all__"
