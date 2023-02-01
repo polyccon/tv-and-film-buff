@@ -3,6 +3,7 @@ name: Testing
 on:
   push:
 env:
+  DJANGO_SETTINGS_MODULE: tv_and_film_buffAPI.config.settings
   JEST_JUNIT_OUTPUT_FILE: results-dir/unit-test-results.xml
 permissions:
   id-token: write # This is required for requesting the JWT
