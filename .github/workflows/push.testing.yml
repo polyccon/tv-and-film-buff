@@ -11,6 +11,14 @@ permissions:
 jobs:
   Unit-Tests:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: read
+      checks: write
+      pull-requests: write
+    defaults:
+      run:
+        working-directory: ./
     steps:
       - name: Git clone the repository
         uses: actions/checkout@v3
