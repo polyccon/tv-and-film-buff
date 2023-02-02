@@ -10,6 +10,7 @@ env:
   DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
   DATABASE_USER: ${{ secrets.DATABASE_USER }}
   DATABASE_PORT: ${{ secrets.DATABASE_PORT }}
+  DATABASE_ENGINE: ${{ secrets.DATABASE_ENGINE }}
   API_KEY: ${{ secrets.API_KEY }}
 permissions:
   id-token: write # This is required for requesting the JWT
