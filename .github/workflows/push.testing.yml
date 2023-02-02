@@ -33,6 +33,8 @@ jobs:
       checks: write
       pull-requests: write
     steps:
+      - name: Create results-dir
+        run: mkdir -p results-dir
       - uses: actions/checkout@v2
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
@@ -44,8 +46,6 @@ jobs:
           sudo -u postgres createuser -s runner
       - name: Git clone the repository
         uses: actions/checkout@v3
-      - name: Create results-dir
-        run: mkdir -p results-dir
       - name: Install Dependencies
         run: pip install -r requirements.txt
       - name: Run Tests
