@@ -5,6 +5,12 @@ on:
 env:
   DJANGO_SETTINGS_MODULE: tv_and_film_buffAPI.config.settings
   JEST_JUNIT_OUTPUT_FILE: results-dir/unit-test-results.xml
+  DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
+  DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
+  DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+  DATABASE_USER: ${{ secrets.DATABASE_USER }}
+  DATABASE_PORT: ${{ secrets.DATABASE_PORT }}
+  API_KEY: ${{ secrets.API_KEY }}
 permissions:
   id-token: write # This is required for requesting the JWT
   contents: read # This is required for actions/checkout
