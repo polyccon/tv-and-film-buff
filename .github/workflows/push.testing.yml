@@ -6,7 +6,7 @@ env:
   DJANGO_SETTINGS_MODULE: tv_and_film_buffAPI.config.settings
   JEST_JUNIT_OUTPUT_FILE: results-dir/unit-test-results.xml
   DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
-  DATABASE_NAME: tv_and_film
+  DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
   DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
   DATABASE_USER: ${{ secrets.DATABASE_USER }}
   DATABASE_PORT: ${{ secrets.DATABASE_PORT }}
@@ -32,12 +32,7 @@ jobs:
       issues: read
       checks: write
       pull-requests: write
-    defaults:
-      run:
-        working-directory: ./
     steps:
-      - name: echo env var to see if secrets works
-        run: echo ${{ secrets.DATABASE_PORT }}
       - uses: actions/checkout@v2
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
