@@ -27,6 +27,7 @@ jobs:
         include:
           - db: postgres
             db_port: 5432
+            engine: postgres
     permissions:
       contents: read
       issues: read
