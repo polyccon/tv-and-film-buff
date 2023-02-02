@@ -28,6 +28,8 @@ jobs:
       run:
         working-directory: ./
     steps:
+      - name: echo env var to see if secrets works
+        run: echo ${{ secrets.DATABASE_PORT }}
       - name: Git clone the repository
         uses: actions/checkout@v3
       - name: Create results-dir
