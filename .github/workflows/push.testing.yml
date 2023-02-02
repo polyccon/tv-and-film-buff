@@ -33,8 +33,6 @@ jobs:
       checks: write
       pull-requests: write
     steps:
-      - name: Create results-dir
-        run: mkdir -p results-dir
       - uses: actions/checkout@v2
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
