@@ -19,6 +19,14 @@ permissions:
 jobs:
   Unit-Tests:
     runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 4
+      matrix:
+        db: [postgres]
+        python-version: [3.6, 3.7, 3.8]
+        include:
+          - db: postgres
+            db_port: 5432
     permissions:
       contents: read
       issues: read
@@ -30,6 +38,10 @@ jobs:
     steps:
       - name: echo env var to see if secrets works
         run: echo ${{ secrets.DATABASE_PORT }}
+      - name: Start PostgreSQL
+        run: |
+          sudo systemctl start postgresql.service
+          sudo -u postgres createuser -s ${{ secrets.DATABASE_USER }}
       - name: Git clone the repository
         uses: actions/checkout@v3
       - name: Create results-dir
