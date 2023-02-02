@@ -4,7 +4,7 @@ on:
   push:
 env:
   DJANGO_SETTINGS_MODULE: tv_and_film_buffAPI.config.settings
-  JEST_JUNIT_OUTPUT_FILE: results-dir/unit-test-results.xml
+  JEST_JUNIT_OUTPUT_FILE: /home/runner/work/tv-and-film-buff/tv-and-film-buff/unit-test-results.xml
   DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
   DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
   DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
@@ -50,9 +50,11 @@ jobs:
         run: pip install -r requirements.txt
       - name: Run Tests
         run: pwd && pytest --junitxml=unit-test-results.xml
+      - name: Check xml file for test results is there
+        run: pwd && ls
       - name: Publish Test Results
         uses: EnricoMi/publish-unit-test-result-action@v2
         if: always()
         with:
           check_name: Unit-Tests-Report
-          junit_files: "results-dir/*.xml"
+          junit_files: "/home/runner/work/tv-and-film-buff/tv-and-film-buff/*.xml"
