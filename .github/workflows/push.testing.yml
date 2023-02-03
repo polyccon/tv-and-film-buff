@@ -5,8 +5,12 @@ on:
 env:
   DJANGO_SETTINGS_MODULE: tv_and_film_buffAPI.config.settings
   JEST_JUNIT_OUTPUT_FILE: /home/runner/work/tv-and-film-buff/tv-and-film-buff/unit-test-results.xml
-  DATABASE_USER: runner
-  DATABASE_PASSWORD: ""
+  DATABASE_HOST: ${{ env.DATABASE_HOST }}
+  DATABASE_NAME: ${{ env.DATABASE_NAME }}
+  DATABASE_PASSWORD: ${{ env.DATABASE_PASSWORD }}
+  DATABASE_USER: ${{ env.DATABASE_USER }}
+  DATABASE_PORT: ${{ env.DATABASE_PORT }}
+  DATABASE_ENGINE: ${{ env.DATABASE_ENGINE }}
 permissions:
   id-token: write # This is required for requesting the JWT
   contents: read # This is required for actions/checkout
@@ -22,8 +26,6 @@ jobs:
         include:
           - db: postgres
             db_port: 5432
-            db_user: runner
-            db_password: ""
     permissions:
       contents: read
       issues: read
