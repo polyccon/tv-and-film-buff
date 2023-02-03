@@ -5,8 +5,8 @@ on:
 env:
   DJANGO_SETTINGS_MODULE: tv_and_film_buffAPI.config.settings
   JEST_JUNIT_OUTPUT_FILE: /home/runner/work/tv-and-film-buff/tv-and-film-buff/unit-test-results.xml
-  DATABASE_USER: runner
-  DATABASE_PASSWORD: ""
+  DATABASE_USER: postgres
+  DATABASE_PASSWORD: postgres
   DATABASE_NAME: tv_and_film
 permissions:
   id-token: write # This is required for requesting the JWT
@@ -14,15 +14,15 @@ permissions:
 
 jobs:
   Unit-Tests:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     strategy:
       max-parallel: 4
       matrix:
         db: [postgres]
         python-version: [3.11]
         include:
-          - DATABASE_USER: runner
-            DATABASE_PASSWORD: ""
+          - DATABASE_USER: postgres
+            DATABASE_PASSWORD: postgres
             DATABASE_NAME: tv_and_film
     permissions:
       contents: read
