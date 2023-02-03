@@ -46,9 +46,7 @@ jobs:
       - name: Install Dependencies
         run: pip install -r requirements.txt
       - name: Run Tests
-        run: pwd && pytest --junitxml=unit-test-results.xml
-      - name: Check xml file for test results is there
-        run: pwd && ls
+        run: pytest --junitxml=unit-test-results.xml
       - name: Publish Test Results
         uses: EnricoMi/publish-unit-test-result-action@v2
         if: always()
