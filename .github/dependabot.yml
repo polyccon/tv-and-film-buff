@@ -1,23 +1,20 @@
+# To get started with Dependabot version updates, you'll need to specify which
+# package ecosystems to update and where the package manifests are located.
+# Please see the documentation for all configuration options:
+# https://docs.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
+
 version: 2
 
 updates:
-  - package-ecosystem: "pip"
-    directory: "/"
+  - package-ecosystem: "pip" # See documentation for possible values
+    directory: "/" # Location of package manifests
     schedule:
       interval: "daily"
-    open-pull-requests-limit: 10
-    env:
-      DJANGO_SETTINGS_MODULE: tv_and_film_buffAPI.config.settings
-      JEST_JUNIT_OUTPUT_FILE: /home/runner/work/tv-and-film-buff/tv-and-film-buff/unit-test-results.xml
-      DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
-      DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
-      DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
-      DATABASE_USER: ${{ secrets.DATABASE_USER }}
-      DATABASE_PORT: ${{ secrets.DATABASE_PORT }}
-      DATABASE_ENGINE: ${{ secrets.DATABASE_ENGINE }}
-      API_KEY: ${{ secrets.API_KEY }}
+open-pull-requests-limit: 10
 
   - package-ecosystem: "docker"
+    # Look for a `Dockerfile` in the `root` directory
     directory: "/"
+    # Check for updates once a week
     schedule:
       interval: "weekly"
