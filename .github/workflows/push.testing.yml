@@ -38,7 +38,7 @@ jobs:
       - name: Start PostgreSQL
         run: |
           sudo systemctl start postgresql.service
-          sudo -u postgres createuser -s runner
+          sudo -u postgres
       - name: Git clone the repository
         uses: actions/checkout@v3
       - name: Install Dependencies
