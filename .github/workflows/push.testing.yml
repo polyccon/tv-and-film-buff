@@ -20,7 +20,7 @@ jobs:
   Unit-Tests:
     runs-on: ubuntu-latest
     defaults:
-      working_directory: /
+      working_directory: "/"
     strategy:
       max-parallel: 4
       matrix:

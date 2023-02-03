@@ -1,21 +1,21 @@
 version: 2
 
-env:
-  DJANGO_SETTINGS_MODULE: tv_and_film_buffAPI.config.settings
-  JEST_JUNIT_OUTPUT_FILE: /home/runner/work/tv-and-film-buff/tv-and-film-buff/unit-test-results.xml
-  DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
-  DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
-  DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
-  DATABASE_USER: ${{ secrets.DATABASE_USER }}
-  DATABASE_PORT: ${{ secrets.DATABASE_PORT }}
-  DATABASE_ENGINE: ${{ secrets.DATABASE_ENGINE }}
-  API_KEY: ${{ secrets.API_KEY }}
-
 updates:
   - package-ecosystem: "pip"
     directory: "/"
     schedule:
       interval: "daily"
+    open-pull-requests-limit: 10
+    env:
+      DJANGO_SETTINGS_MODULE: tv_and_film_buffAPI.config.settings
+      JEST_JUNIT_OUTPUT_FILE: /home/runner/work/tv-and-film-buff/tv-and-film-buff/unit-test-results.xml
+      DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
+      DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
+      DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+      DATABASE_USER: ${{ secrets.DATABASE_USER }}
+      DATABASE_PORT: ${{ secrets.DATABASE_PORT }}
+      DATABASE_ENGINE: ${{ secrets.DATABASE_ENGINE }}
+      API_KEY: ${{ secrets.API_KEY }}
 
   - package-ecosystem: "docker"
     directory: "/"
