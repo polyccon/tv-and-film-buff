@@ -5,7 +5,6 @@ on:
 env:
   DJANGO_SETTINGS_MODULE: tv_and_film_buffAPI.config.settings
   JEST_JUNIT_OUTPUT_FILE: /home/runner/work/tv-and-film-buff/tv-and-film-buff/unit-test-results.xml
-  DB: postgres
   DATABASE_USER: runner
   DATABASE_PASSWORD: ""
   DATABASE_NAME: tv_and_film
@@ -22,8 +21,7 @@ jobs:
         db: [postgres]
         python-version: [3.11]
         include:
-          - DB: postgres
-            DATABASE_USER: runner
+          - DATABASE_USER: runner
             DATABASE_PASSWORD: ""
             DATABASE_NAME: tv_and_film
     permissions:
@@ -47,7 +45,6 @@ jobs:
         run: pip install -r requirements.txt
       - name: Run Tests
         env:
-          DB: ${{ matrix.DB }}
           DB_USER: ${{ matrix.DATABASE_USER }}
           DB_PASSWORD: ${{ matrix.DATABASE_PASSWORD }}
           DATABASE_NAME: ${{ matrix.DATABASE_NAME }}
