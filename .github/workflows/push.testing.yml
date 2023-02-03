@@ -5,10 +5,6 @@ on:
 env:
   DJANGO_SETTINGS_MODULE: tv_and_film_buffAPI.config.settings
   JEST_JUNIT_OUTPUT_FILE: /home/runner/work/tv-and-film-buff/tv-and-film-buff/unit-test-results.xml
-  DATABASE_HOST: localhost
-  DATABASE_NAME: tv_and_film
-  DATABASE_PORT: 5432
-  DATABASE_ENGINE: django.db.backends.postgresql
 permissions:
   id-token: write # This is required for requesting the JWT
   contents: read # This is required for actions/checkout
@@ -24,6 +20,8 @@ jobs:
         include:
           - db: postgres
             db_port: 5432
+            db_user: runner
+            db_password: ""
     permissions:
       contents: read
       issues: read
