@@ -11,7 +11,6 @@ env:
   DATABASE_USER: ${{ secrets.DATABASE_USER }}
   DATABASE_PORT: ${{ secrets.DATABASE_PORT }}
   DATABASE_ENGINE: ${{ secrets.DATABASE_ENGINE }}
-  API_KEY: ${{ secrets.API_KEY }}
 permissions:
   id-token: write # This is required for requesting the JWT
   contents: read # This is required for actions/checkout
@@ -47,9 +46,7 @@ jobs:
       - name: Install Dependencies
         run: pip install -r requirements.txt
       - name: Run Tests
-        run: pwd && pytest --junitxml=unit-test-results.xml
-      - name: Check xml file for test results is there
-        run: pwd && ls
+        run: pytest --junitxml=unit-test-results.xml
       - name: Publish Test Results
         uses: EnricoMi/publish-unit-test-result-action@v2
         if: always()
