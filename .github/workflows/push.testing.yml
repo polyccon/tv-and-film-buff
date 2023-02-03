@@ -8,7 +8,7 @@ env:
   DATABASE_HOST: ${{ vars.DATABASE_HOST }}
   DATABASE_NAME: ${{ vars.DATABASE_NAME }}
   DATABASE_PASSWORD: ${{ vars.DATABASE_PASSWORD }}
-  DATABASE_USER: ${{ secrets.DATABASE_USER }}
+  DATABASE_USER: ${{ vars.DATABASE_USER }}
 
 permissions:
   id-token: write # This is required for requesting the JWT
