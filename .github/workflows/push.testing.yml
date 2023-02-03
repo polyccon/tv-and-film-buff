@@ -37,6 +37,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Start PostgreSQL
         run: |
+          cat pg_hba.conf
           sudo systemctl start postgresql.service
           sudo -u postgres createuser -s runner
       - name: Git clone the repository
