@@ -21,8 +21,8 @@ jobs:
         db: [postgres]
         python-version: [3.11]
         include:
-          - DATABASE_USER: postgres
-            DATABASE_PASSWORD: postgres
+          - DATABASE_USER: runner
+            DATABASE_PASSWORD: ""
             DATABASE_NAME: tv_and_film
     permissions:
       contents: read
@@ -38,7 +38,7 @@ jobs:
       - name: Start PostgreSQL
         run: |
           sudo systemctl start postgresql.service
-          sudo -u postgres
+          sudo -u postgres createuser -s runner
       - name: Git clone the repository
         uses: actions/checkout@v3
       - name: Install Dependencies
