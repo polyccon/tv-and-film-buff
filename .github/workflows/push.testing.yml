@@ -7,6 +7,8 @@ env:
   JEST_JUNIT_OUTPUT_FILE: /home/runner/work/tv-and-film-buff/tv-and-film-buff/unit-test-results.xml
   DB: postgres
   DATABASE_USER: runner
+  DATABASE_PASSWORD: ""
+  DATABASE_NAME: tv_and_film
 permissions:
   id-token: write # This is required for requesting the JWT
   contents: read # This is required for actions/checkout
@@ -22,6 +24,8 @@ jobs:
         include:
           - DB: postgres
             DATABASE_USER: runner
+            DATABASE_PASSWORD: ""
+            DATABASE_NAME: tv_and_film
     permissions:
       contents: read
       issues: read
@@ -45,6 +49,8 @@ jobs:
         env:
           DB: ${{ matrix.DB }}
           DB_USER: ${{ matrix.DATABASE_USER }}
+          DB_PASSWORD: ${{ matrix.DATABASE_PASSWORD }}
+          DATABASE_NAME: ${{ matrix.DATABASE_NAME }}
         run: pytest --junitxml=unit-test-results.xml
       - name: Check xml file for test results is there
         run: pwd && ls
