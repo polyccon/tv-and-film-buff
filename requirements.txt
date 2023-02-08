@@ -17,7 +17,7 @@ django-filter==21.1
 django-rest-framework==0.1.0
 djangorestframework==3.13.1
 factory-boy==3.2.1
-Faker==14.2.1
+Faker==16.7.0
 graphviz==0.19.2
 h11==0.13.0
 icdiff==2.0.5
