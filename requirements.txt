@@ -20,7 +20,7 @@ factory-boy==3.2.1
 Faker==16.8.1
 graphviz==0.19.2
 h11==0.13.0
-icdiff==2.0.5
+icdiff==2.0.6
 idna==3.3
 inflection==0.5.1
 iniconfig==2.0.0
