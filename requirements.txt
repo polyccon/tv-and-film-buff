@@ -37,7 +37,7 @@ psycopg2-binary==2.9.3
 py==1.11.0
 pycparser==2.21
 Pygments==2.12.0
-pyOpenSSL==22.0.0
+pyOpenSSL==23.0.0
 pyparsing==3.0.8
 PySocks==1.7.1
 pytest==7.2.1
