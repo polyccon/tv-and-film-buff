@@ -13,7 +13,7 @@ pytest==7.2.1
 pytest-clarity==1.0.1
 pytest-cov==4.0.0
 pytest-django==4.5.2
-pytest-factoryboy==2.1.0
+pytest-factoryboy==2.5.1
 pytest-icdiff==0.6
 python-decouple==3.7
 python-dotenv==0.21.1
