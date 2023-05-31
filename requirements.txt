@@ -4,7 +4,7 @@ coverage==7.2.7
 Django==4.2
 django-cors-headers==3.14.0
 django-extensions==3.2.1
-django-filter==23.1
+django-filter==23.2
 djangorestframework==3.14.0
 factory-boy==3.2.1
 psycopg2-binary==2.9.6
