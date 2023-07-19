@@ -6,7 +6,7 @@ django-cors-headers==4.1.0
 django-extensions==3.2.3
 django-filter==23.2
 djangorestframework==3.14.0
-factory-boy==3.2.1
+factory-boy==3.3.0
 psycopg2-binary==2.9.6
 py==1.11.0
 pytest==7.4.0
