@@ -1,7 +1,7 @@
 black==23.7.0
 click==8.1.6
 coverage==7.2.7
-Django==4.2.3
+Django==4.2.4
 django-cors-headers==4.2.0
 django-extensions==3.2.3
 django-filter==23.2
