@@ -1,4 +1,4 @@
-black==23.9.1
+black==23.10.0
 click==8.1.7
 coverage==7.3.2
 Django==4.2.6
