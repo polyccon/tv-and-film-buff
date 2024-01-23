@@ -16,6 +16,6 @@ pytest-django==4.7.0
 pytest-factoryboy==2.6.0
 pytest-icdiff==0.9
 python-decouple==3.8
-python-dotenv==1.0.0
+python-dotenv==1.0.1
 requests==2.31.0
 
