@@ -1,5 +1,7 @@
 ### tv-and-film-buff
 
+[![Coverage](https://img.shields.io/badge/Code%20Coverage-91%25-success?style=flat)](https://img.shields.io/badge/Code%20Coverage-91%25-success?style=flat)
+
 **TO SETUP**
 
 If you have pyenv installed (instructions for how to install pyenv here: https://github.com/pyenv/pyenv#installation)
