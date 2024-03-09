@@ -45,7 +45,7 @@ jobs:
       - name: Install Dependencies
         run: pip install -r requirements.txt
       - name: Run Tests
-        run: pytest --cov-report xml:cov.xml --junitxml=unit-test-results.xml
+        run: pytest --cov-report xml:coverage.xml --cov=tv_and_film_buffAPI --junitxml=unit-test-results.xml
       - name: Publish Test Results
         uses: EnricoMi/publish-unit-test-result-action@v2
         if: always()
@@ -55,7 +55,7 @@ jobs:
       - name: Code Coverage Report
         uses: irongut/CodeCoverageSummary@v1.3.0
         with:
-          filename: /home/runner/work/tv-and-film-buff/tv-and-film-buff/cov.xml
+          filename: /home/runner/work/tv-and-film-buff/coverage/coverage.xml
           badge: true
           fail_below_min: true
           format: markdown
