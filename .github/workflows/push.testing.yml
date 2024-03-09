@@ -53,4 +53,4 @@ jobs:
           check_name: Unit-Tests-Report
           junit_files: "/home/runner/work/tv-and-film-buff/tv-and-film-buff/*.xml"
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v2
