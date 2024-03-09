@@ -1,14 +1,13 @@
 black==24.2.0
 click==8.1.7
 coverage==7.4.3
-Django==5.0.1
+Django==4.2.11
 django-cors-headers==4.3.1
 django-extensions==3.2.3
 django-filter==23.5
 djangorestframework==3.14.0
 factory-boy==3.3.0
 psycopg2-binary==2.9.9
-py==1.11.0
 pytest==8.0.2
 pytest-clarity==1.0.1
 pytest-cov==4.1.0
