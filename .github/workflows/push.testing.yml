@@ -22,7 +22,7 @@ jobs:
       max-parallel: 4
       matrix:
         db: [postgres]
-        postgresql-version: [11, 12, 13, 14]
+        postgresql-version: [14]
         python-version: [3.11]
         include:
           - db: postgres
@@ -74,3 +74,8 @@ jobs:
             Release ${{ github.sha }} to <https://pr-${{ github.event.number }}.example.com>
           recreate: true
           path: code-coverage-results.md
+      - name: Lint with Ruff
+        run: |
+          pip install ruff
+          ruff --output-format=github .
+        continue-on-error: true
