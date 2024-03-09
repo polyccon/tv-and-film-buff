@@ -13,6 +13,7 @@ env:
 permissions:
   id-token: write # This is required for requesting the JWT
   contents: read # This is required for actions/checkout
+  pull-requests: write
 
 jobs:
   Unit-Tests:
@@ -68,5 +69,7 @@ jobs:
         uses: marocchino/sticky-pull-request-comment@v2
         if: github.event_name == 'pull_request'
         with:
+          message: |
+            Release ${{ github.sha }} to <https://pr-${{ github.event.number }}.example.com>
           recreate: true
           path: code-coverage-results.md
