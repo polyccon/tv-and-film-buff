@@ -55,7 +55,7 @@ jobs:
       - name: Code Coverage Report
         uses: irongut/CodeCoverageSummary@v1.3.0
         with:
-          filename: coverage/**/cov.xml
+          filename: /home/runner/work/tv-and-film-buff/tv-and-film-buff/cov.xml
           badge: true
           fail_below_min: true
           format: markdown
