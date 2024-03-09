@@ -22,6 +22,7 @@ jobs:
       max-parallel: 4
       matrix:
         db: [postgres]
+        postgresql-version: [11, 12, 13, 14]
         python-version: [3.11]
         include:
           - db: postgres
@@ -46,7 +47,7 @@ jobs:
       - name: Install Dependencies
         run: pip install -r requirements.txt
       - name: Run Tests
-        run: pytest --doctest-modules --junitxml=unit-test-results.xml --cov=com --cov-report=xml --cov-report=html
+        run: pytest --cov-report xml:coverage.xml --cov=tv_and_film_buffAPI --junitxml=unit-test-results.xml
       - name: Publish Test Results
         uses: EnricoMi/publish-unit-test-result-action@v2
         if: always()
