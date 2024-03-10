@@ -79,8 +79,3 @@ jobs:
             This message is from a push.
           recreate: true
           path: code-coverage-results.md
-      - name: Lint with Ruff
-        run: |
-          pip install ruff
-          ruff --output-format=github .
-        continue-on-error: true
