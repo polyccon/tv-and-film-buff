@@ -13,6 +13,7 @@ env:
 permissions:
   id-token: write # This is required for requesting the JWT
   contents: read # This is required for actions/checkout
+  pull-requests: write
 
 jobs:
   Unit-Tests:
@@ -21,6 +22,7 @@ jobs:
       max-parallel: 4
       matrix:
         db: [postgres]
+        postgresql-version: [14]
         python-version: [3.11]
         include:
           - db: postgres
@@ -45,7 +47,7 @@ jobs:
       - name: Install Dependencies
         run: pip install -r requirements.txt
       - name: Run Tests
-        run: pytest --cov-report xml:coverage.xml --cov=tv_and_film_buffAPI --junitxml=unit-test-results.xml
+        run: pytest --cov=tv_and_film_buffAPI --cov-report=xml --junitxml=unit-test-results.xml
       - name: Publish Test Results
         uses: EnricoMi/publish-unit-test-result-action@v2
         if: always()
@@ -64,9 +66,16 @@ jobs:
           indicators: true
           output: both
           thresholds: '60 80'
+      - name: Finder
+        uses: jwalton/gh-find-current-pr@v1
+        id: finder
       - name: Add Coverage PR Comment
         uses: marocchino/sticky-pull-request-comment@v2
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'push'
         with:
+          number: ${{ steps.finder.outputs.pr }}
+          message: |
+            Test ${{ github.sha }} ended successfully.
+            This message is from a push.
           recreate: true
           path: code-coverage-results.md
