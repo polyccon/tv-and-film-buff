@@ -68,7 +68,7 @@ jobs:
           thresholds: '60 80'
       - name: Add Coverage PR Comment
         uses: marocchino/sticky-pull-request-comment@v2
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'push'
         with:
           message: |
             Release ${{ github.sha }} to <https://pr-${{ github.event.number }}.example.com>
