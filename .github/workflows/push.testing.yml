@@ -71,7 +71,7 @@ jobs:
         if: github.event_name == 'push'
         with:
           message: |
-            Release ${{ github.sha }} to <https://pr-${{ github.event.number }}.example.com>
+            Release ${{ github.sha }}
           recreate: true
           path: code-coverage-results.md
       - name: Lint with Ruff
