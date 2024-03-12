@@ -77,5 +77,10 @@ jobs:
           message: |
             Test ${{ github.sha }} ended successfully.
             This message is from a push.
-          recreate: true
+          recreate: false
           path: code-coverage-results.md
+      - name: Lint with Ruff
+        run: |
+          pip install ruff
+          ruff --output-format=github .
+        continue-on-error: true
