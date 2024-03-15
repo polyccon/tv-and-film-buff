@@ -6,9 +6,7 @@
 import json
 import logging
 import os
-from pathlib import Path
 import requests
-import sys
 
 from dotenv import load_dotenv
 from django.core.management.base import BaseCommand
@@ -21,8 +19,12 @@ FORMAT = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 logging.basicConfig(level=logging.INFO, format=FORMAT)
 LOGGER = logging.getLogger(__name__)
 
-SEASONS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../../data/seasons")
-EPISODES_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../../data/episodes")
+SEASONS_DIR = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)), "../../../data/seasons"
+)
+EPISODES_DIR = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)), "../../../data/episodes"
+)
 
 
 def get_request(url):

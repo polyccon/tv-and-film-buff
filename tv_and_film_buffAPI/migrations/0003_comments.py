@@ -5,7 +5,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("tv_and_film_buffAPI", "0002_rename_seriesid_series_series_id"),
     ]

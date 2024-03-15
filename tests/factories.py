@@ -1,5 +1,3 @@
-import datetime as dt
-
 import factory
 from django.utils import timezone
 from tv_and_film_buffAPI.models import Series, Episodes, Comments

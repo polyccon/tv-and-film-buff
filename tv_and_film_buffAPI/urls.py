@@ -38,7 +38,7 @@ COMMENTS_LIST_CREATE = path(
 
 COMMENTS_RETRIEVE_UPDATE = path(
     "episodes/<imdb_id>/comments/<id>",
-    CommentsViewSet.as_view({"get": "retrieve", "put":"update", "delete": "delete"}),
+    CommentsViewSet.as_view({"get": "retrieve", "put": "update", "delete": "delete"}),
     name="comments-update",
 )
 
@@ -48,4 +48,10 @@ SERIES_LIST = path(
     name="series-list",
 )
 
-urlpatterns = [EPISODES_LIST, EPISODE_RETRIEVE, COMMENTS_LIST_CREATE, COMMENTS_RETRIEVE_UPDATE, SERIES_LIST]
+urlpatterns = [
+    EPISODES_LIST,
+    EPISODE_RETRIEVE,
+    COMMENTS_LIST_CREATE,
+    COMMENTS_RETRIEVE_UPDATE,
+    SERIES_LIST,
+]
