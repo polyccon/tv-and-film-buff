@@ -1,4 +1,3 @@
-import os
 import pytest
 from tests.factories import SeriesFactory, EpisodesFactory, CommentsFactory
 
