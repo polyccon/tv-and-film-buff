@@ -103,7 +103,10 @@ def test_comments_list_endpoint_returns_comments(comment):
 
     assert response.status_code == 200
     assert response.json() == [
-        {"body": "This is a comment for an episode", "episode": comment.episode.pk}
+        {
+            "body": "This is a comment for an episode",
+            "episode": comment.episode.pk,
+        }
     ]
 
 
@@ -115,11 +118,16 @@ def test_comments_create_endpoint_adds_and_returns_comment(episode, comment):
     url = reverse(viewname=COMMENTS_LIST_CREATE.name, kwargs={"imdb_id": "tt1480055"})
 
     response = client.post(
-        url, {"body": "this is a test comment", "episode": episode.pk}, format="json"
+        url,
+        {"body": "this is a test comment", "episode": episode.pk},
+        format="json",
     )
 
     assert response.status_code == 201
-    assert response.json() == {"body": "this is a test comment", "episode": episode.pk}
+    assert response.json() == {
+        "body": "this is a test comment",
+        "episode": episode.pk,
+    }
     assert comments.count() == 2
 
 

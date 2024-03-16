@@ -15,7 +15,11 @@ Including another URLconf
 """
 
 from django.urls import path
-from tv_and_film_buffAPI.views import EpisodesViewSet, CommentsViewSet, SeriesViewSet
+from tv_and_film_buffAPI.views import (
+    EpisodesViewSet,
+    CommentsViewSet,
+    SeriesViewSet,
+)
 
 
 EPISODES_LIST = path(

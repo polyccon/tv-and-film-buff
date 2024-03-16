@@ -57,7 +57,9 @@ def create_episode_records():
                 episode.genre = genre
                 episode.language = language
                 episode.imdb_rating = (
-                    -1 if type(imdb_rating).isinstance(str) else type(imdb_rating).isinstance(float(imdb_rating))
+                    -1
+                    if type(imdb_rating).isinstance(str)
+                    else type(imdb_rating).isinstance(float(imdb_rating))
                 )
                 episode.imdb_id = imdb_id
                 episode.poster = poster

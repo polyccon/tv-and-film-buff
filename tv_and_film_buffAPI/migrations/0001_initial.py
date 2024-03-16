@@ -18,7 +18,10 @@ class Migration(migrations.Migration):
                 (
                     "seriesID",
                     models.CharField(
-                        max_length=10, primary_key=True, serialize=False, unique=True
+                        max_length=10,
+                        primary_key=True,
+                        serialize=False,
+                        unique=True,
                     ),
                 ),
             ],
