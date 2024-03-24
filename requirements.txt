@@ -1,6 +1,6 @@
 black==24.2.0
 click==8.1.7
-coverage==7.4.3
+coverage==7.4.4
 Django==4.2.11
 django-cors-headers==4.3.1
 django-extensions==3.2.3
