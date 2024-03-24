@@ -16,5 +16,5 @@ pytest-icdiff==0.9
 python-decouple==3.8
 python-dotenv==1.0.1
 requests==2.31.0
-black==24.2.0
-flake8==4.0.1
+black==23.7.0
+flake8==6.0.0

@@ -1,7 +1,7 @@
 [tool.black]
 line-length = 88
 target-version = ["py38", "py39", "py310", "py311"]
-experimental-string-processing = true
+preview = true
 # 'extend-exclude' excludes files or directories in addition to the defaults
 extend-exclude = '''
 ^/(
@@ -12,8 +12,6 @@ extend-exclude = '''
   | venv
   | __pycache__
   | ci-scripts
-  | enrich-genai-generative-service
-  | octopus
   | \.coverage
   | old
   | build
