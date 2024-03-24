@@ -81,7 +81,7 @@ jobs:
           path: code-coverage-results.md
 
   Linting:
-    name: Linting with ruff
+    name: Linting with black and flake8
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
