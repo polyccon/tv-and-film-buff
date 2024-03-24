@@ -5,6 +5,8 @@ max-line-length = 88
 black-config = pyproject.toml
 exclude =
     data
+    idea
+    git
     migrations
     __pycache__
     manage.py
