@@ -1,0 +1,16 @@
+[flake8]
+# Recommend matching the black line length (default 88),
+# rather than using the flake8 default of 79:
+max-line-length = 88
+black-config = pyproject.toml
+exclude =
+    data
+    sandbox
+    idea
+    git
+    migrations
+    __pycache__
+    manage.py
+    settings.py
+    env
+    .env
