@@ -5,6 +5,7 @@ max-line-length = 88
 black-config = pyproject.toml
 exclude =
     data
+    sandbox
     idea
     git
     migrations
