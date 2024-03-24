@@ -81,7 +81,7 @@ jobs:
           path: code-coverage-results.md
 
   Linting:
-    name: Linting with ruff
+    name: Linting with black and flake8
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -89,8 +89,12 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Lint with Ruff
+      - name: Lint with Black
         run: |
-          pip install ruff
-          ruff check --output-format=github .
+          pip install black
+          black .
         continue-on-error: false
+      - name: Lint with Flake8
+        run: |
+          pip install flake8
+          python -m flake8
