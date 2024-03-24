@@ -1,0 +1,9 @@
+pipreqs --force  #running this command removes unused dependencies from requirements.txt
+Django==4.1.4
+djangorestframework==3.14.0
+factory==1.2
+pytest==6.2.5
+python-decouple==3.7
+python-dotenv==0.21.1
+requests==2.28.2
+plugins: django-4.5.2, Faker-16.8.1, icdiff-0.5, cov-3.0.0, clarity-1.0.1, factoryboy-2.1.0

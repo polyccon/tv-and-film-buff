@@ -98,4 +98,3 @@ jobs:
         run: |
           pip install flake8
           python -m flake8
-        continue-on-error: false

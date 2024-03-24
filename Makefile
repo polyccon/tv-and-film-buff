@@ -48,6 +48,9 @@ test_coverage: ## Updates requirements, rules and runs all available tests local
 format:
 	${SIMPLE_RUN_TEST} black . --check
 
+ruff:
+	${SIMPLE_RUN_TEST} ruff check .
+
 safety:
 	${SIMPLE_RUN_TEST} safety check -r requirements.txt
 
