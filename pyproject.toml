@@ -16,6 +16,7 @@ extend-exclude = '''
   | old
   | build
   | dist
+  | \.data
 )
 '''
 
