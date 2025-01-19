@@ -5,14 +5,13 @@ on:
   workflow_dispatch:
 
 
-env:
-  DATABASE_HOST: ${{ vars.DATABASE_HOST }}
-  DATABASE_NAME: ${{ vars.DATABASE_NAME }}
-  DATABASE_PASSWORD: ${{ vars.DATABASE_PASSWORD }}
-  DATABASE_USER: ${{ vars.DATABASE_USER }}
-
 jobs:
   call-reusable-testing-linting:
     uses: polyccon/github-action-reusable-workflows/.github/workflows/reusable-python-testing-linting-with-db.yml@main
     with:
       DJANGO_SETTINGS_MODULE: tv_and_film_buffAPI.config.settings
+      DATABASE_HOST: ${{ vars.DATABASE_HOST }}
+      DATABASE_NAME: ${{ vars.DATABASE_NAME }}
+      DATABASE_PASSWORD: ${{ vars.DATABASE_PASSWORD }}
+      DATABASE_USER: ${{ vars.DATABASE_USER }}
+      directories_to_test: tv_and_film_buffAPI/
