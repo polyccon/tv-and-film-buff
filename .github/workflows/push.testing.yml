@@ -1,4 +1,4 @@
-name: Call Reusable Workflow
+name: call_testing_linting_with_db
 
 on:
   workflow_dispatch:
