@@ -1,6 +1,7 @@
 name: call_testing_linting_with_db
 
 on:
+  push:
   workflow_dispatch:
 
 
