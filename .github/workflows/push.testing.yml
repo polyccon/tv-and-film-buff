@@ -1,13 +1,96 @@
-name: call_testing_linting_with_db
+name: Testing
 
 on:
   push:
-  workflow_dispatch:
+env:
+  DJANGO_SETTINGS_MODULE: tv_and_film_buffAPI.config.settings
+  JEST_JUNIT_OUTPUT_FILE: /home/runner/work/tv-and-film-buff/tv-and-film-buff/unit-test-results.xml
+  DATABASE_HOST: ${{ vars.DATABASE_HOST }}
+  DATABASE_NAME: ${{ vars.DATABASE_NAME }}
+  DATABASE_PASSWORD: ${{ vars.DATABASE_PASSWORD }}
+  DATABASE_USER: ${{ vars.DATABASE_USER }}
 
+permissions:
+  id-token: write # This is required for requesting the JWT
+  contents: read # This is required for actions/checkout
+  pull-requests: write
 
 jobs:
-  call-reusable-testing-linting:
-    uses: polyccon/github-action-reusable-workflows/.github/workflows/reusable-python-testing-linting-with-db.yml@main
-    with:
-      DJANGO_SETTINGS_MODULE: tv_and_film_buffAPI.config.settings
-      directories_for_coverage: tv_and_film_buffAPI/
+  Unit-Tests:
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 4
+      matrix:
+        db: [postgres]
+        postgresql-version: [14]
+        python-version: [3.11]
+        include:
+          - db: postgres
+            db_port: 5432
+    permissions:
+      contents: read
+      issues: read
+      checks: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Start PostgreSQL
+        run: |
+          sudo systemctl start postgresql.service
+          sudo -u postgres createuser -s runner
+      - name: Git clone the repository
+        uses: actions/checkout@v3
+      - name: Install Dependencies
+        run: pip install -r requirements.txt
+      - name: Run Tests
+        run: pytest --cov=tv_and_film_buffAPI --cov-report=xml --junitxml=unit-test-results.xml
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
+        with:
+          check_name: Unit-Tests-Report
+          junit_files: "/home/runner/work/tv-and-film-buff/tv-and-film-buff/unit-test-results.xml"
+      - name: Code Coverage Report
+        uses: irongut/CodeCoverageSummary@v1.3.0
+        with:
+          filename: coverage.xml
+          badge: true
+          fail_below_min: true
+          format: markdown
+          hide_branch_rate: false
+          hide_complexity: true
+          indicators: true
+          output: both
+          thresholds: '60 80'
+      - name: Finder
+        uses: jwalton/gh-find-current-pr@v1
+        id: finder
+      - name: Add Coverage PR Comment
+        uses: marocchino/sticky-pull-request-comment@v2
+        if: github.event_name == 'push'
+        with:
+          number: ${{ steps.finder.outputs.pr }}
+          message: |
+            Test ${{ github.sha }} ended successfully.
+            This message is from a push.
+          recreate: false
+          path: code-coverage-results.md
+
+  Linting:
+    name: Linting with ruff
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Lint with Ruff
+        run: |
+          pip install ruff
+          ruff check --output-format=github .
+        continue-on-error: false
