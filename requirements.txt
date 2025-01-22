@@ -8,7 +8,7 @@ django-filter==24.2
 djangorestframework==3.14.0
 factory-boy==3.3.0
 psycopg2-binary==2.9.9
-pytest==8.2.0
+pytest==8.3.4
 pytest-clarity==1.0.1
 pytest-cov==6.0.0
 pytest-django==4.8.0
