@@ -7,7 +7,7 @@ on:
 
 jobs:
   call-reusable-testing-linting:
-    uses: polyccon/github-action-reusable-workflows/.github/workflows/reusable-python-testing-linting-with-db.yml@main
+    uses: polyccon/github-actions-for-python-projects/.github/workflows/reusable-python-testing-linting-with-db.yml@main
     with:
       DJANGO_SETTINGS_MODULE: tv_and_film_buffAPI.config.settings
       directories_for_coverage: tv_and_film_buffAPI
