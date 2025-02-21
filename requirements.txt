@@ -17,4 +17,4 @@ pytest-icdiff==0.9
 python-decouple==3.8
 python-dotenv==1.0.1
 requests==2.32.3
-ruff==0.9.6
+ruff==0.9.7
