@@ -83,3 +83,6 @@ populate_db:
 
 ingest_data:
 	${RUN_COMPOSE} python manage.py ingest_data
+
+ingest_data_into_db:
+	${RUN_COMPOSE} python manage.py ingest_data_into_db
